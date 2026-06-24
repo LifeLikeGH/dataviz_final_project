@@ -1,0 +1,109 @@
+---
+title: "Mini-Project 01"
+output: 
+  html_document:
+    keep_md: true
+    toc: true
+    toc_float: true
+---
+
+# Data Visualization Project 01
+
+_revised version of mini-project 01 goes here_
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(plotly)
+library(htmlwidgets)
+rats <- read_csv("../data/rats_nyc.csv")
+```
+
+```{r, message=FALSE}
+ggplot(rats, aes(x = factor(
+  sighting_weekday, levels = c(
+    "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+  )), fill = sighting_weekday)) + geom_bar() + 
+  scale_fill_viridis_d() +
+  labs(
+    title = "Rats Sightings per Weekday",
+    x = "",
+    y = "",
+    caption = "Source: Rats NYC Dataset"
+  ) + theme(legend.position = "none")
+
+```
+
+```{r, message=FALSE, fig.height = 8}
+#rework 1
+p <- rats %>% filter(!is.na(location_type)) %>%
+  count(location_type) %>% filter(n >= 1000) %>% ggplot(aes(x = location_type, y = n,size = n, fill = location_type, text = paste(location_type, ", Count:", n))) + geom_point() +
+  scale_fill_viridis_d() +
+  labs(
+    title = "Rat Sightings by Location Type",
+    x = "",
+    y = "",
+    caption = "Source: Rats NYC Dataset"
+  ) + coord_flip() +
+  theme(legend.position = "none", axis.text.y = element_blank(), axis.ticks.y = element_blank())
+
+ggplotly(p, tooltip = "text")
+
+```
+
+```{r, message=FALSE, fig.height = 8}
+#rework 2
+
+p <- rats %>% filter(!is.na(location_type)) %>%
+  count(location_type) %>% filter(n <= 4000) %>% ggplot(aes(x = location_type, y = n,size = n, fill = location_type, text = paste(location_type, ", Count:", n))) + geom_point() +
+  scale_fill_viridis_d() +
+  labs(
+    title = "Rat Sightings by Location Type",
+    x = "",
+    y = "",
+    caption = "Source: Rats NYC Dataset"
+  ) + coord_flip(ylim = c(0, 4000)) +
+  theme(legend.position = "none", axis.text.y = element_blank(), axis.ticks.y = element_blank())
+
+ggplotly(p, tooltip = "text")
+
+```
+
+
+```{r, message=FALSE, fig.height = 8}
+#original 1
+ggplot(rats, aes(x = location_type)) + geom_bar(fill = 'blue') +
+  labs(
+    title = "Rat Sightings by Location Type",
+    x = "",
+    y = "",
+    caption = "Source: Rats NYC Dataset"
+  ) + coord_flip()
+```
+
+```{r, message=FALSE, fig.height = 8}
+#original 2
+ggplot(rats, aes(x = location_type)) + geom_bar(fill = 'blue') + 
+  labs(
+    title = "Rat Sightings by Location Type (Closer Look)",
+    x = "",
+    y = "",
+    caption = "Source: Rats NYC Dataset"
+  ) + coord_flip(ylim = c(0, 4000))
+
+```
+
+```{r, message=FALSE}
+
+ggplot(rats, aes(y = borough, fill = borough)) + geom_bar() + 
+  labs(
+    title = "Rat Sightings by Borough",
+    x = "",
+    y = "",
+    caption = "Source: Rats NYC Dataset"
+  ) + facet_wrap(~ sighting_year) +
+  scale_fill_viridis_d() +
+  scale_x_continuous(breaks = c(3000, 6000)) +
+  theme(legend.position = "none")
+
+```
