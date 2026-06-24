@@ -37,7 +37,9 @@ _[include your favorite visualization from this project here]_
 
 In this project, I explored ... _[short description of the data visualizations you for this part of the project produced goes here]_
 
-For the third part of this project, I replicated many of the given data visualizations to very close accuracy.  I had to investigate several different ways of modifying the visualizations that I hadn’t fully explored before and after playing with colors and shapes I managed to make very accurate replications.  I was asked to check two continuous variables where I chose Water and concrete compressive strength.  To show off a bad visualization made good, I first did my water graph as a pie chart.  It looks horrible and is understandable since something drilled into our heads through this semester has been to essentially never use pie charts if we can avoid it.  It is hard to even understand what information the pie chart is trying to provide so when we instead put that information into a histogram, we get actual data we can understand.
+For the third part of this project, I replicated many of the given data visualizations to very close accuracy.  I had to investigate several different ways of modifying the visualizations that I hadn’t fully explored before and after playing with colors and shapes I managed to make very accurate replications.  I was asked to check two continuous variables where I chose Water and concrete compressive strength.  To show off a bad visualization made good, I first did my water graph as a pie chart.  It looks horrible and is understandable since something drilled into our heads through this semester has been to essentially never use pie charts if we can avoid it.  It is hard to even understand what information the pie chart is trying to provide so when we instead put that information into a histogram, we get actual data we can understand.  With this better histogram version I also made sure the graph was color-blind friendly and since we need an interactive visualization I made it easier to see the exact values on the water when you hover it.
+
+
 
 **Sample data visualization:** 
 

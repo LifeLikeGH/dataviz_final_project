@@ -182,9 +182,11 @@ ggplot(aes(x = "", y = n, fill - water_range))+ geom_col(color = 'white') + scal
 ```
 
 ```{r}
-#histogram for good graph
-ggplot(new_concrete, aes(x = Water, fill = after_stat(count)))+ geom_histogram() + scale_fill_viridis_c()
-
+library(plotly)
+library(htmlwidgets)
+#histogram for good graph and interactibility
+p <- ggplot(new_concrete, aes(x = Water, fill = after_stat(count)))+ geom_histogram() + scale_fill_viridis_c()
+ggplotly(p)
 ```
 
 ```{r}
